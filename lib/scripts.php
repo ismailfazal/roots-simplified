@@ -3,18 +3,17 @@
  * Enqueue scripts and stylesheets
  *
  * Enqueue stylesheets in the following order:
- * 1. //cdn.jsdelivr.net/bootstrap/3.1.1/css/bootstrap.min.css
+ * 1. all css called in a single file using jsdelivr, comma separated, with auto update recent version of projects
  *
  * Enqueue scripts in the following order:
  * 1. jquery-1.11.0.min.js via Google CDN
- * 2. /theme/assets/js/vendor/modernizr-2.7.0.min.js
- * 3. /theme/assets/js/main.min.js (in footer)
+ * 2. all other js called in a single file using jsdelivr, comma separated, with auto update recent version of projects
  */
 function roots_scripts() {
-  wp_enqueue_style('roots_main', '//cdn.jsdelivr.net/bootstrap/3.1.1/css/bootstrap.min.css', false, '9880649384aea9f1ee166331c0a30daa');
+  wp_enqueue_style('roots_css', '//cdn.jsdelivr.net/g/bootstrap(css/bootstrap.min.css)', false, null);
 
   // jQuery is loaded using the same method from HTML5 Boilerplate:
-  // Grab Google CDN's latest jQuery with a protocol relative URL; fallback to local if offline
+  // Grab Google CDN's latest jQuery with a protocol relative URL
   // It's kept in the header instead of footer to avoid conflicts with plugins.
   if (!is_admin() && current_theme_supports('jquery-cdn')) {
     wp_deregister_script('jquery');
@@ -25,9 +24,8 @@ function roots_scripts() {
     wp_enqueue_script('comment-reply');
   }
 
-  wp_register_script('modernizr', '//cdn.jsdelivr.net/modernizr/2.7.1/modernizr.min.js', array(), null, false);
-  wp_register_script('roots_scripts', '//cdn.jsdelivr.net/bootstrap/3.1.1/js/bootstrap.min.js', array(), '0fc6af96786d8f267c8686338a34cd38', true);
-  wp_enqueue_script('modernizr');
+  // calling bootstrap, modernizr in a single request
+  wp_register_script('roots_scripts', '//cdn.jsdelivr.net/g/bootstrap,modernizr', array(), null, true);
   wp_enqueue_script('jquery');
   wp_enqueue_script('roots_scripts');
 }
