@@ -3,14 +3,14 @@
  * Enqueue scripts and stylesheets
  *
  * Enqueue stylesheets in the following order:
- * 1. all css called in a single file using jsdelivr, comma separated, with auto update recent version of projects
+ * 1. bootstrap, font-awesome all css called in a single file using jsdelivr, comma separated, with auto update recent version of projects
  *
  * Enqueue scripts in the following order:
  * 1. jquery-1.11.0.min.js via Google CDN
  * 2. all other js called in a single file using jsdelivr, comma separated, with auto update recent version of projects
  */
 function roots_scripts() {
-  wp_enqueue_style('roots_css', '//cdn.jsdelivr.net/g/bootstrap(css/bootstrap.min.css)', false, null);
+  wp_enqueue_style('roots_css', '//cdn.jsdelivr.net/g/bootstrap(css/bootstrap.min.css),fontawesome(css/font-awesome.min.css)', false, null);
 
   // jQuery is loaded using the same method from HTML5 Boilerplate:
   // Grab Google CDN's latest jQuery with a protocol relative URL
