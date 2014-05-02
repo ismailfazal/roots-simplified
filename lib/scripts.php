@@ -11,7 +11,8 @@
  */
 function roots_scripts() {
   wp_enqueue_style('roots_css', '//cdn.jsdelivr.net/g/bootstrap(css/bootstrap.min.css),fontawesome(css/font-awesome.min.css)', false, null);
-
+  wp_enqueue_style('roots_style', get_template_directory_uri() . '/assets/css/app.min.css', false, null);
+  
   // jQuery is loaded using the same method from HTML5 Boilerplate:
   // Grab Google CDN's latest jQuery with a protocol relative URL
   // It's kept in the header instead of footer to avoid conflicts with plugins.
